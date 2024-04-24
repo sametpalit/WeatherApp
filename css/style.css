@@ -2,20 +2,30 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins';
 }
 
 body{
-    background: #f8f7fc;
+    background: #181826;
 }
 h1 {
     color: #fff;
     padding: 18px 0;
     text-align: center;
     font-size: 1.75rem;
-    background: #a5baf1;
+    background: #212134;
+    Border:1px solid #47476f;
 }
-
+h2{
+    color: #fff;
+}
+h3{
+    color: #fff;
+}
+h4{
+    opacity: 0.5;
+    color: rgb(160, 160, 214);
+}
 .container{
     display: flex;
     gap: 35px;
@@ -45,11 +55,11 @@ h1 {
 }
 .weather-input .seperator::before{
     content: "of";
-    color: #6C757D;
+    color: #fff;
     font-size: 1.18rem;
     padding: 0 15px;
     margin-top: -4px;
-    background: #f8f7fc;
+    background: #181826;
 }
 .weather-input button{
     width: 100%;
@@ -60,22 +70,23 @@ h1 {
     color: #fff;
     font-size: 1rem;
     border-radius: 4px;
-    background: #5e82f4;
+    background: #212134;
 
 }
 .weather-input .location-btn{
-    background: #48484a;
+    background: #212134;
 }
 .weather-data{
     width: 100%;
 }
 .current-weather{
-    background: #5e82f4;
+    background: #212134;
     color: #fff;
     padding: 20px 70px 20px 20px;
     display: flex;
     border-radius: 5px;
     justify-content: space-between;
+    Border:1px solid #47476f;
 }
 .current-weather h2{
     font-size: 1.7rem;
@@ -114,7 +125,8 @@ h1 {
     color: #fff;
     padding: 18px 16px;
     border-radius: 5px;
-    background: #a5baf1;
+    border: 1px solid #47476f;
+    background: #212134;
     width: calc(100% / 5);
     box-shadow: 10px 12px 14px rgba(0, 0, 0, 0.2);
 }
@@ -159,20 +171,21 @@ h1 {
 .weather-map {
     margin-top: 20px;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #212134;
     border-radius: 10px;
+    Border:1px solid #47476f;
 }
 
 .weather-map h2 {
     margin-bottom: 10px;
     font-size: 1.5rem;
-    color: #5372F0;
+    color: #fff;
 }
 
 .weather-map iframe {
     width: 100%;
     height: 400px;
-    border: none;
+    Border: 1px solid #47476f;
     border-radius: 8px;
     box-shadow: 10px 12px 14px 14px rgba(0, 0, 0, 0.2);
 }
