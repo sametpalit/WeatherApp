@@ -28,9 +28,30 @@
                         <h4>Luchtvochtigheid: __%</h4>
                         <h4>Wind: __ km/h</h4>
                     </div>
-
-
                 </div>
+                <div class="weather-map">
+                <h2>Live Weerkaart</h2>
+                <?php
+                    $city = 'Sliedrecht'; 
+                    $apiKey = '49dda0c6d525a40193428007fe69fed2'; 
+
+
+                    $url = "http://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey";
+
+
+                    $data = json_decode(file_get_contents($url), true);
+
+
+                    if ($data) {
+                        $lat = $data['coord']['lat'];
+                        $lon = $data['coord']['lon'];
+                        $mapUrl = "https://openweathermap.org/weathermap?basemap=map&cities=false&layer=temperature&lat=$lat&lon=$lon&zoom=8";
+                        echo '<iframe src="' . $mapUrl . '" width="100%" height="400"></iframe>';
+                    } else {
+                        echo 'We konden geen weerinformatie vinden voor deze locatie.';
+                    }
+                    ?>
+                    </div>
                 <div class="days-forecast">
                     <h2>5-dagen voorspelling</h2>
                     <ul class="weather-cards">
