@@ -20,69 +20,53 @@
                 <button class="search-btn">Zoek</button>
                 <div class="seperator"></div>
                 <button class="location-btn">Je locatie</button>
+                <div class="sep2">
+                <button class="unit-toggle-btn">switch eenheid</button>
+                </div>
             </div>
             <div class="weather-data">
                 <div class="current-weather">
                     <div class="details">
-                        <h2>_____ ( _____ )</h2>
-                        <h4><i class="fa-solid fa-temperature-three-quarters fa-flip-horizontal fa-xl" style="color: #a0a0d6;"></i>  : __ °C</h4>
-                        <h4><i class="fa-solid fa-droplet fa-xl" style="color: #a0a0d6;"></i>  : __%</h4>
-                        <h4><i class="fa-solid fa-wind" style="color: #a0a0d6;"></i>  : __ km/h</h4>
+                    <h2>_____ ( _____ )</h2>
+                    <h4><i class="fa-solid fa-temperature-three-quarters fa-flip-horizontal fa-xl temperature" style="color: #a0a0d6;" data-temp="___"></i> : <span class="temperature-value"></span> <span class="unit">°C</span></h4>
+                    <h4><i class="fa-solid fa-droplet fa-xl"></i>  : __%</h4>
+                    <h4><i class="fa-solid fa-wind"></i>  : __ km/h</h4>
                     </div>
                 </div>
                 <div class="weather-map">
                 <h2>Live Weerkaart</h2>
-                <?php
-                    $city = 'Sliedrecht'; 
-                    $apiKey = '49dda0c6d525a40193428007fe69fed2'; 
-
-
-                    $url = "http://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey";
-
-
-                    $data = json_decode(file_get_contents($url), true);
-
-
-                    if ($data) {
-                        $lat = $data['coord']['lat'];
-                        $lon = $data['coord']['lon'];
-                        $mapUrl = "https://openweathermap.org/weathermap?basemap=map&cities=false&layer=temperature&lat=$lat&lon=$lon&zoom=8";
-                        echo '<iframe src="' . $mapUrl . '" width="100%" height="400"></iframe>';
-                    } else {
-                        echo 'We konden geen weerinformatie vinden voor deze locatie.';
-                    }
-                    ?>
+                <?php include 'php/weather.php'; ?> 
                     </div>
                 <div class="days-forecast">
                     <h2>5-dagen voorspelling</h2>
                     <ul class="weather-cards">
                         <li class="card"> 
                             <h3>( _____ )</h3>
-                            <h4><i class="fa-solid fa-temperature-three-quarters fa-flip-horizontal fa-xl" style="color: #a0a0d6;"></i>  : __ °C</h4>
+                            <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    <span class="temperature" data-temp="___"></span> <span class="unit">°C</span></h4>
                             <h4><i class="fa-solid fa-droplet fa-xl" style="color: #a0a0d6;"></i>  : __%</h4>
                             <h4><i class="fa-solid fa-wind" style="color: #a0a0d6;"></i>  : __ km/h</h4>
                         </li>
                         <li class="card"> 
                             <h3>( _____ )</h3>
-                            <h4><i class="fa-solid fa-temperature-three-quarters fa-flip-horizontal fa-xl" style="color: #a0a0d6;"></i>  : __ °C</h4>
+                            <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    <span class="temperature" data-temp="___"></span> <span class="unit">°C</span></h4>
                             <h4><i class="fa-solid fa-droplet fa-xl" style="color: #a0a0d6;"></i>  : __%</h4>
                             <h4><i class="fa-solid fa-wind" style="color: #a0a0d6;"></i>  : __ km/h</h4>
                         </li>
                         <li class="card"> 
                             <h3>( _____ )</h3>
-                            <h4><i class="fa-solid fa-temperature-three-quarters fa-flip-horizontal fa-xl" style="color: #a0a0d6;"></i>  : __ °C</h4>
+                            <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    <span class="temperature" data-temp="___"></span> <span class="unit">°C</span></h4>
                             <h4><i class="fa-solid fa-droplet fa-xl" style="color: #a0a0d6;"></i>  : __%</h4>
                             <h4><i class="fa-solid fa-wind" style="color: #a0a0d6;"></i>  : __ km/h</h4>
                         </li>
                         <li class="card"> 
                             <h3>( _____ )</h3>
-                            <h4><i class="fa-solid fa-temperature-three-quarters fa-flip-horizontal fa-xl" style="color: #a0a0d6;"></i>  : __ °C</h4>
+                            <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    <span class="temperature" data-temp="___"></span> <span class="unit">°C</span></h4>
                             <h4><i class="fa-solid fa-droplet fa-xl" style="color: #a0a0d6;"></i>  : __%</h4>
                             <h4><i class="fa-solid fa-wind" style="color: #a0a0d6;"></i>  : __ km/h</h4>
                         </li>
                         <li class="card"> 
                             <h3>( _____ )</h3>
-                            <h4><i class="fa-solid fa-temperature-three-quarters fa-flip-horizontal fa-xl" style="color: #a0a0d6;"></i>  : __ °C</h4>
+                            <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    <span class="temperature" data-temp="___"></span> <span class="unit">°C</span></h4>
                             <h4><i class="fa-solid fa-droplet fa-xl" style="color: #a0a0d6;"></i>  : __%</h4>
                             <h4><i class="fa-solid fa-wind" style="color: #a0a0d6;"></i>  : __ km/h</h4>
                         </li>
@@ -93,6 +77,7 @@
         </div>
     </header>
 
+    <script src="js/celcius.js" defer></script>
 
 </body>
 

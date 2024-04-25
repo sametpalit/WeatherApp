@@ -61,6 +61,15 @@ h4{
     margin-top: -4px;
     background: #181826;
 }
+.weather-input .sep2{
+    height:  1px;
+    width: 100%;
+    margin: 125px 0;
+    background: #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .weather-input button{
     width: 100%;
     padding: 10px 0 ;
@@ -77,6 +86,9 @@ h4{
 .weather-input .location-btn{
     background: #212134;
     Border:1px solid #47476f;
+}
+.weather-input .unit-toggle-btn{
+    top: 30px;
 }
 .weather-data{
     width: 100%;

@@ -18,7 +18,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
         return `                    
         <div class="details">
             <h2>${cityName} (${formattedDate})</h2>
-            <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    ${(weatherItem.main.temp - 273.15).toFixed(2)}°C </h4>
+            <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    <span class="temperature-value">${(weatherItem.main.temp - 273.15).toFixed(2)}</span><span class="unit">°C</span> </h4>
             <h4><i class="fas fa-tint" style="color: #a0a0d6;"></i>    ${weatherItem.main.humidity}%</h4>
             <h4><i class="fas fa-wind" style="color: #a0a0d6;"></i>    ${weatherItem.wind.speed} km/h</h4>
         </div>
@@ -26,17 +26,16 @@ const createWeatherCard = (cityName, weatherItem, index) => {
             <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
             <h4>${weatherItem.weather[0].description}</h4>
         </div>`;
-
-    } else { // HTML voor de andere vijf dagen
-        return `<li class="card">
+    } // HTML voor de andere vijf dagen
+    return `<li class="card">
                 <h3>(${formattedDate})</h3>
                 <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}.png" alt="weather-icon">
-                <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    ${(weatherItem.main.temp - 273.15).toFixed(2)}°C </h4>
+                <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    <span class="temperature-value">${(weatherItem.main.temp - 273.15).toFixed(2)}</span><span class="unit">°C</span> </h4>
                 <h4><i class="fas fa-tint" style="color: #a0a0d6;"></i>    ${weatherItem.main.humidity}%</h4>
                 <h4><i class="fas fa-wind" style="color: #a0a0d6;"></i>    ${weatherItem.wind.speed} km/h</h4>
-            </li>`;
-    }
+        </li>`;
 }
+
 const getWeatherDetails = (cityName, lat, lon) => {
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
@@ -65,18 +64,22 @@ const getWeatherDetails = (cityName, lat, lon) => {
             alert("Er is een probleem bij het laden van de voorspelling");
         });
 };
+
 const getCityCoordinates = () => {
     const cityName = cityInput.value.trim();
     if (!cityName) return;
     const GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
 
-    fetch(GEOCODING_API_URL).then(res => res.json()).then(data => {
-        if (!data.length) return alert(`Geen coordinaten gevonden voor ${cityName}`);
-        const { name, lat, lon } = data[0];
-        getWeatherDetails(name, lat, lon);
-    }).catch(() => {
-        alert("Er is een probleem bij het zoeken naar de coordinaten");
-    });
+    fetch(GEOCODING_API_URL)
+        .then(res => res.json())
+        .then(data => {
+            if (!data.length) return alert(`Geen coordinaten gevonden voor ${cityName}`);
+            const { name, lat, lon } = data[0];
+            getWeatherDetails(name, lat, lon);
+        })
+        .catch(() => {
+            alert("Er is een probleem bij het zoeken naar de coordinaten");
+        });
 }
 
 const getUserCoordinates = () => {
@@ -85,12 +88,15 @@ const getUserCoordinates = () => {
             const { latitude, longitude} = position.coords;
             const REVERSE_GEOCODING_URL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
             //verkrijg stadsnaam door coordinaten via reverse geocoding API
-            fetch(REVERSE_GEOCODING_URL).then(res => res.json()).then(data => {
-                const { name,} = data[0];
-                getWeatherDetails(name, latitude, longitude);
-            }).catch(() => {
-                alert("Er is een probleem bij het zoeken naar de stad");
-            });
+            fetch(REVERSE_GEOCODING_URL)
+                .then(res => res.json())
+                .then(data => {
+                    const { name,} = data[0];
+                    getWeatherDetails(name, latitude, longitude);
+                })
+                .catch(() => {
+                    alert("Er is een probleem bij het zoeken naar de stad");
+                });
         },
         error => {
             if(error.code === error.PERMISSION_DENIED) {
