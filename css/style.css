@@ -71,10 +71,12 @@ h4{
     font-size: 1rem;
     border-radius: 4px;
     background: #212134;
+    Border:1px solid #47476f;
 
 }
 .weather-input .location-btn{
     background: #212134;
+    Border:1px solid #47476f;
 }
 .weather-data{
     width: 100%;

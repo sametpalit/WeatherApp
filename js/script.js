@@ -7,10 +7,17 @@ const weatherCardsDiv = document.querySelector(".weather-cards");
 const API_KEY = "49dda0c6d525a40193428007fe69fed2";
 
 const createWeatherCard = (cityName, weatherItem, index) => {
-    if (index === 0) { //html voor huidige weer card
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + index);
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+
+    if (index === 0) { // HTML voor de huidige weerskaart
         return `                    
         <div class="details">
-            <h2>${cityName} (${weatherItem.dt_txt.split(" ")[0]})</h2>
+            <h2>${cityName} (${formattedDate})</h2>
             <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    ${(weatherItem.main.temp - 273.15).toFixed(2)}°C </h4>
             <h4><i class="fas fa-tint" style="color: #a0a0d6;"></i>    ${weatherItem.main.humidity}%</h4>
             <h4><i class="fas fa-wind" style="color: #a0a0d6;"></i>    ${weatherItem.wind.speed} km/h</h4>
@@ -20,15 +27,15 @@ const createWeatherCard = (cityName, weatherItem, index) => {
             <h4>${weatherItem.weather[0].description}</h4>
         </div>`;
 
-    } else{ //html voor de andere vijf dagen
-    return `<li class="card">
-                <h3>(${weatherItem.dt_txt.split(" ")[0]})</h3>
-                <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" alt="weather-icon">
+    } else { // HTML voor de andere vijf dagen
+        return `<li class="card">
+                <h3>(${formattedDate})</h3>
+                <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}.png" alt="weather-icon">
                 <h4><i class="fas fa-temperature-high" style="color: #a0a0d6;"></i>    ${(weatherItem.main.temp - 273.15).toFixed(2)}°C </h4>
                 <h4><i class="fas fa-tint" style="color: #a0a0d6;"></i>    ${weatherItem.main.humidity}%</h4>
                 <h4><i class="fas fa-wind" style="color: #a0a0d6;"></i>    ${weatherItem.wind.speed} km/h</h4>
             </li>`;
-        }
+    }
 }
 const getWeatherDetails = (cityName, lat, lon) => {
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
