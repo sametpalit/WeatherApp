@@ -16,7 +16,7 @@
         <div class="container">
             <div class="weather-input">
                 <h3>Voer locatie in</h3>
-                <input class="city-input" type="text" placeholder="bv, Rotterdam, Den Haag, Amsterdam">
+                <input class="city-input" type="text" name="location" placeholder="bv, Rotterdam, Den Haag, Amsterdam">
                 <button class="search-btn">Zoek</button>
                 <div class="seperator"></div>
                 <button class="location-btn">Je locatie</button>
